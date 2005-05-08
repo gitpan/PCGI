@@ -4,9 +4,9 @@ use 5.005;
 use strict;
 use Exporter;
 
-use Stream::Reader 0.06;
+use Stream::Reader 0.09;
 
-our $VERSION = '0.27';
+our $VERSION = '0.28';
 
 our @ISA         = qw( Exporter );
 our %EXPORT_TAGS = ( all => [ qw( trim urlencode urldecode httpdate ) ] );
@@ -934,7 +934,7 @@ sub AUTOLOAD {
 }
 
 # Private function: BOOL = _compile(NAME)
-# Compiling, specified by NAME, subtorutine from $CODE array
+# Compiling, specified by NAME, subroutine from $CODE array
 sub _compile {
   my $name = shift;
 
@@ -1078,16 +1078,16 @@ parsing a big or giant POST query's.
 
 =over 4
 
-=item new()
+=item B<new()>
 
 The constructor method instantiates a new PCGI object.
 
-=item DESTROY()
+=item B<DESTROY()>
 
 The destructor method cleaning up memory and deleting existings
 temporary files.
 
-=item set( GROUP => { NAME => VALUE }, ... )
+=item B<set( GROUP =E<gt> { NAME =E<gt> VALUE }, ... )>
 
 Method for changing settings of query's parsing.
 
@@ -1096,13 +1096,13 @@ activation of this group.
 
 =over 4
 
-=item GROUP
+=item B<GROUP>
 
 Name of settings group:
 
 =over 4
 
-=item GET
+=item B<GET>
 
 
 Settings of GET query parsing:
@@ -1114,7 +1114,7 @@ B<EscNull> - Boolean value. Escaping or not simbols with zero code from
 any places, where it needed. Default value is 1 and strongly not
 recommended to change this parameter!
 
-=item COOKIE
+=item B<COOKIE>
 
 Settings of COOKIE string parsing:
 
@@ -1122,7 +1122,7 @@ B<IncEmpty> - ...
 
 B<EscNull> - ...
 
-=item POST
+=item B<POST>
 
 Settings of POST query parsing:
 
@@ -1147,7 +1147,7 @@ size. Default value is 2Mb.
 Warning: only for this settings group. MaxSize, MaxNameSize and MaxValsSize
 means size's of undecoded data!
 
-=item MULTI
+=item B<MULTI>
 
 Settings of multipart POST query parsing:
 
@@ -1173,7 +1173,7 @@ value for autodetect. Undefined by default.
 
 =back
 
-=item errstr()
+=item B<errstr()>
 
 This method activates the parsing of POST query (if wasn't parsed before) and
 returns HTTP standard status of this operation. Empty string mean, what POST
@@ -1212,7 +1212,7 @@ errors in request header fields.
 Note: also at any of that parsing errors all POST data, what was parsed
 before, will be truncated.
 
-=item GET( [ NAME ] )
+=item B<GET( [ NAME ] )>
 
 In scalar context returns first one element value, specified by NAME. If
 element not exists, then returns undef value.
@@ -1221,17 +1221,17 @@ In array context returns array of element values, specified by NAME.
 
 If name is not specified, then returns array with all available names.
 
-=item COOKIE()
+=item B<COOKIE()>
 
 ...
 
 Only one difference. For every NAME of parameter can be maximum one value.
 
-=item POST()
+=item B<POST()>
 
 ...
 
-=item FILE()
+=item B<FILE()>
 
 ...
 
@@ -1250,7 +1250,7 @@ Can contains anything ;-)
 
 B<size> - alltimes defined number. Real size of temporary file.
 
-=item header( NAME => VALUE, ... )
+=item B<header( NAME =E<gt> VALUE, ... )>
 
 Method for setting (or deleting) response header parameters.
 
@@ -1258,34 +1258,34 @@ Note: for changing HTTP status in response, please, use the 'status' parameter.
 
 =over 4
 
-=item NAME
+=item B<NAME>
 
 Name of parameter. Must be defined and not empty string. All symbols '-' can be
 changed to symbols '_'. Case is not mutter.
 
-=item VALUE
+=item B<VALUE>
 
 This is string with new value or reference to array with many new values. In case of
 undefined value, parameter will be deleted.
 
 =back
 
-=item setcookie( NAME => VALUE, { ... Attributes ... } )
+=item B<setcookie( NAME =E<gt> VALUE, { ... Attributes ... } )>
 
 Method for setting (or deleting) HTTP cookie's.
 
 =over 4
 
-=item NAME
+=item B<NAME>
 
 Name of cookie. Must be defined and not empty string.
 
-=item VALUE
+=item B<VALUE>
 
 This is string with new value. In case of undefined value, will be
 generated code for deleting cookie.
 
-=item Attributes:
+=item B<Attributes:>
 
 These optional attributes are available:
 
@@ -1306,11 +1306,11 @@ value will be url-encoded.
 
 =back
 
-=item sendheader()
+=item B<sendheader()>
 
 Method for sending header. Can be used only once.
 
-=item env( NAME )
+=item B<env( NAME )>
 
 Simple wrapper for array $ENV. Only one difference, - never returns undefined
 values. NAME must be defined. Example:
@@ -1319,28 +1319,28 @@ values. NAME must be defined. Example:
     # ...
   }
 
-=item httpdate( UTIME )
+=item B<httpdate( UTIME )>
 
 HTTP date formater. Returns string, - date, formed by HTTP standard.
 
 =over 4
 
-=item UTIME
+=item B<UTIME>
 
 Time in UNIX format. Current time by default.
 
 =back
 
-=item trim( STRING )
+=item B<trim( STRING )>
 
 Returns STRING copy, but without leading and trailing spaces. STRING must be
 defined.
 
-=item urldecode( STRING )
+=item B<urldecode( STRING )>
 
 Returns url-decoded STRING. String must be defined.
 
-=item urlencode( STRING )
+=item B<urlencode( STRING )>
 
 Returns url-encoded STRING. String must be defined.
 
@@ -1365,7 +1365,7 @@ Perl 5.005 or higher;
 
 =item *
 
-Stream::Reader 0.06 or higher;
+Stream::Reader 0.09 or higher;
 
 =item *
 
@@ -1390,7 +1390,7 @@ Note: All examples works the same under mod_perl too.
 
 =head1 EXAMPLES
 
-Please visit catalogue /examples in this module distribution.
+Please visit catalogue examples/ in this module distribution.
 
 =head1 CREDITS
 
